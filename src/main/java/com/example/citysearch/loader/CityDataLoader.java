@@ -1,12 +1,14 @@
 package com.example.citysearch.loader;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +18,9 @@ import com.example.citysearch.trie.CitySearchTrie;
 @Component
 public class CityDataLoader {
   private final CitySearchTrie trie = new CitySearchTrie();
+
+  @Value("classpath:cities_canada-usa.tsv")
+  private Resource citiesResource;
 
   public void loadFromMultipartFile(MultipartFile file) throws IOException {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
@@ -42,17 +47,14 @@ public class CityDataLoader {
         double latitude = Double.parseDouble(parts[columnIndexMap.get("lat")]);
         double longitude = Double.parseDouble(parts[columnIndexMap.get("long")]);
 
-        if (name.equalsIgnoreCase("name")) {
-          continue;
-        }
-
         trie.insert(name, new City(name, latitude, longitude));
       }
     }
   }
 
   public void loadFromTsv(String filePath) throws IOException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+    try (InputStream inputStream = citiesResource.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
       String line;
       String headerLine = reader.readLine();
       if (headerLine == null) {
@@ -75,10 +77,6 @@ public class CityDataLoader {
         String name = parts[columnIndexMap.get("name")];
         double latitude = Double.parseDouble(parts[columnIndexMap.get("lat")]);
         double longitude = Double.parseDouble(parts[columnIndexMap.get("long")]);
-
-        if (name.equalsIgnoreCase("name")) {
-          continue;
-        }
 
         trie.insert(name, new City(name, latitude, longitude));
       }
