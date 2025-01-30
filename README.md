@@ -9,8 +9,8 @@ The City Search Application is a Spring Boot-based service that provides city su
 - **City Suggestions**: Get city suggestions based on a search query and optional latitude and longitude.
 - **File Upload**: Upload a TSV (Tab-Separated Values) file containing city data to populate the application.
 - **Scoring Mechanism**: The application uses a scoring system to rank city suggestions based on text relevance and proximity to provided coordinates.
-- **Error Handling**: Comprehensive error handling for invalid inputs and file types.
-- **Swagger Documentation**: Interactive API documentation for easy testing and exploration of endpoints.
+- **Error Handling**: Basic error handling for invalid inputs and file types.
+- **Swagger Documentation**: Swagger API documentation for easy testing and exploration of endpoints.
 
 ## Live Version
 
