@@ -7,7 +7,7 @@ The City Search Application is a Spring Boot-based service that provides city su
 ## Features
 
 - **City Suggestions**: Get city suggestions based on a search query and optional latitude and longitude.
-- **File Upload**: Upload a TSV (Tab-Separated Values) file containing city data to populate the application.
+- **File Upload**: Upload a TSV (Tab-Separated Values) file containing city data to populate the application. The first line/row of the uploaded file must have "name", "lat" and "long" just like example file (cities_canada-usa.tsv).
 - **Scoring Mechanism**: The application uses a scoring system to rank city suggestions based on text relevance and proximity to provided coordinates.
 - **Error Handling**: Basic error handling for invalid inputs and file types.
 - **Swagger Documentation**: Swagger API documentation for easy testing and exploration of endpoints.
@@ -15,6 +15,7 @@ The City Search Application is a Spring Boot-based service that provides city su
 ## Live Version
 
 You can access the live version of the API at: [City Search API](https://citysearch-dojq.onrender.com)
+The API is deployed using render.com (free tier).
 
 ## Prerequisites
 
