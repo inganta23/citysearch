@@ -132,3 +132,38 @@ spring.servlet.multipart.max-file-size=1MB
 spring.servlet.multipart.max-request-size=1MB
 citysearch.limitData=10
 ```
+
+## Limitations of the Application
+
+While the City Search Application provides useful features for city suggestions and data uploads, it has certain limitations that users should be aware of:
+
+1. **In-Memory Data Storage**:
+
+   - The application uses a Trie data structure to store city data in memory. This means that all uploaded data is kept in memory and will be lost when the application is stopped or restarted. There is no persistent storage mechanism (like a database) to retain the uploaded data across server restarts.
+
+2. **Initial Data Source**:
+
+   - The application relies on the provided `cities_canada-usa.tsv` file as the initial data source. Each time the server starts, this file is read, and the data is converted into the Trie structure. If the file is not present or is modified incorrectly, the application may not function as intended.
+
+3. **Limited Data Handling**:
+
+   - The application currently does not support advanced data handling features such as data validation, deduplication, or complex queries. Users must ensure that the uploaded TSV files are correctly formatted and contain valid data.
+
+4. **File Size Limitations**:
+
+   - The application has a maximum file size limit for uploads. This may restrict users from uploading larger datasets, which could be a limitation for applications requiring extensive city data.
+
+5. **Error Handling**:
+
+   - While the application includes basic error handling, there may be edge cases or unexpected input formats that are not adequately managed. Users may encounter errors if they provide invalid data formats or parameters.
+
+6. **Scalability**:
+
+   - The current implementation may not scale well with a large number of cities or high-frequency requests. The in-memory Trie structure may lead to increased memory usage, and performance could degrade with a significant amount of data.
+
+7. **No User Authentication**:
+
+   - The application does not implement any user authentication or authorization mechanisms. This means that anyone with access to the API can upload data or query suggestions without restrictions.
+
+8. **Limited API Documentation**:
+   - While Swagger is included for API documentation, the documentation may not cover all edge cases or provide detailed examples for every endpoint. Users may need to refer to the source code for more complex use cases.
