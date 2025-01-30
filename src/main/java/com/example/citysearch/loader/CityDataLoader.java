@@ -23,6 +23,10 @@ public class CityDataLoader {
   private Resource citiesResource;
 
   public void loadFromMultipartFile(MultipartFile file) throws IOException {
+    if (file.isEmpty()) {
+      throw new IOException("The file is empty.");
+    }
+
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
       String line;
       String headerLine = reader.readLine();
