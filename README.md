@@ -2,7 +2,7 @@
 
 ## Overview
 
-The City Search Application is a Spring Boot-based service that provides city suggestions based on user queries and optional geographical coordinates. It allows users to upload city data and retrieve suggestions efficiently.
+The City Search Application is a Spring Boot-based service that provides city suggestions based on user queries and geographical coordinates. It allows users to upload city data and retrieve suggestions efficiently.
 
 ## Features
 
